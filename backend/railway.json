@@ -3,7 +3,13 @@
     "build": {
       "builder": "DOCKERFILE",
       "buildCommand": "docker compose build --no-cache",
-      "dockerfilePath": "backend/Dockerfile"
+      "dockerfilePath": "backend/Dockerfile",
+      "watchPatterns": [
+        "src/**",
+        "backend/requirements.txt",
+        "backend/Dockerfile",
+        "backend/src"
+      ]
       },
     "deploy": {
       "startCommand": "uvicorn main:fastapi_app --host 0.0.0.0 --port 8000"
