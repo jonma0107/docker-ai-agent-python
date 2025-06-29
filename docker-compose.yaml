@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8000
+    volumes:
+      - ./backend/src:/app
+    develop:
+      watch:
+        - action: rebuild
+          path: backend/requirements.txt
+        - action: rebuild
+          path: backend/Dockerfile
+        # - action: restart
+        #   path: ./backend/src
+      environment:
+        - PORT=8000
+      env_file:
+        - .env
+    command: uvicorn main:fastapi_app --host 0.0.0.0 --port ${PORT} --reload
+
+  static_html:
+    build:
+      context: ./static_html
+      dockerfile: static.Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./static_html/src:/app
+    command: python -m http.server 8000
