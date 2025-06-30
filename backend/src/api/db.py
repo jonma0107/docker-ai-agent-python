@@ -1,26 +1,25 @@
 import os
-from sqlmodel import Session, SQLModel, create_engine
 
-# Obtener la variable de entorno
+import sqlmodel 
+from sqlmodel import Session, SQLModel
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-# Validar que esté definida
-if not DATABASE_URL:
-    raise NotImplementedError("`DATABASE_URL` is not set.")
+if DATABASE_URL == "":
+    raise NotImplementedError("`DATABASE_URL` needs to be set.")
 
-# Reemplazo de protocolo por compatibilidad (solo si viene con postgres://)
-if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg://", 1)
+DATABASE_URL = DATABASE_URL.replace("postgres://", "postgres+psycopg://")
 
-# Crear el engine
-engine = create_engine(DATABASE_URL, echo=True)
+engine = sqlmodel.create_engine(DATABASE_URL)
 
-# Inicializa las tablas definidas con SQLModel
+# database models
+# does not create db migrations
 def init_db():
-    print("Creating database tables...")
+    print("creating database tables...")
     SQLModel.metadata.create_all(engine)
 
-# Usar sesión en endpoints
+
+# api routes
 def get_session():
     with Session(engine) as session:
         yield session
