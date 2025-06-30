@@ -9,6 +9,8 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL == "":
     raise NotImplementedError("DATABASE_URL is not set")
 
+DATABASE_URL = DATABASE_URL.replace("postgres://", "postgres+psycopg://")
+
 engine = create_engine(DATABASE_URL, echo=True)
 
 
