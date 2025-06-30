@@ -21,6 +21,7 @@ def chat_list_messages(session: Session = Depends(get_session)):
     return results
 
 # curl -X POST -d '{"message": "Give me a summary of why it is good to go outside"}' -H "Content-Type: application/json" http://localhost:8000/api/chat/
+# curl -X POST -d '{"message": "Give me a summary of why it is good to go outside"}' -H "Content-Type: application/json" https://docker-ai-agent-python-production-0067.up.railway.app/api/chat/
 @router.post("/", response_model=EmailMessageSchema)
 def chat_create_message(payload: ChatMessagePayload, session: Session = Depends(get_session)):
     data = payload.model_dump()

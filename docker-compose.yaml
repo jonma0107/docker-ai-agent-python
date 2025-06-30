@@ -30,6 +30,7 @@ services:
     env_file:
       - .env
 
+
   # static_html:
   #   build:
   #     context: ./static_html
