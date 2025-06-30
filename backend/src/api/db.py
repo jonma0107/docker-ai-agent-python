@@ -1,6 +1,9 @@
 import os
 from sqlmodel import create_engine, Session, SQLModel
 
+from dotenv import load_dotenv
+load_dotenv()
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL == "":
