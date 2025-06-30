@@ -3,3 +3,11 @@ uvicorn[standard]
 requests
 sqlmodel
 psycopg[binary]
+langchain
+langchain-community
+langchain-openai
+langchain-core
+langchain-experimental
+langchain-huggingface
+langchain-ollama
+langchain-ollama    

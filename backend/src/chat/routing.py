@@ -4,6 +4,9 @@ from sqlmodel import Session, select
 from chat.models import ChatMessagePayload, ChatMessage, ChatMessageListItem
 from api.db import get_session
 
+from ai.schemas import EmailMessageSchema
+from ai.services import generate_email_message
+
 router = APIRouter()
 
 @router.get("/")
@@ -17,8 +20,8 @@ def chat_list_messages(session: Session = Depends(get_session)):
     results = session.exec(query).fetchall()[:10]
     return results
 
-
-@router.post("/", response_model=ChatMessageListItem)
+# curl -X POST -d '{"message": "Give me a summary of why it is good to go outside"}' -H "Content-Type: application/json" http://localhost:8000/api/chat/
+@router.post("/", response_model=EmailMessageSchema)
 def chat_create_message(payload: ChatMessagePayload, session: Session = Depends(get_session)):
     data = payload.model_dump()
     print(data)
@@ -26,4 +29,6 @@ def chat_create_message(payload: ChatMessagePayload, session: Session = Depends(
     session.add(obj)
     session.commit()
     session.refresh(obj)
-    return obj
+
+    response = generate_email_message(payload.message)
+    return response
