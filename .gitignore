@@ -207,3 +207,12 @@ marimo/_lsp/
 __marimo__/
 
 .vscode/
+
+static_html/
+.static_html/
+/static_html/
+
+backend/src/ignoreme/
+
+.dockerignore
+
