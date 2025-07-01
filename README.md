@@ -104,6 +104,8 @@ web: uvicorn main:fastapi_app --host 0.0.0.0 --port $PORT
 4. Configurar las variables de entorno necesarias en Streamlit Cloud
 5. La app estará disponible en: [https://ai-email-research-assistant.streamlit.app/](https://ai-email-research-assistant.streamlit.app/)
 
+![image](https://github.com/user-attachments/assets/6f2cc7cb-1fb4-4caa-bfa2-be858a64e776)
+
 ### Desarrollo Local
 
 1. **Configurar variables de entorno**:
