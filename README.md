@@ -77,6 +77,8 @@ DATABASE_URL=postgresql://usuario:contraseña@db_service:5432/nombre_db
    - Nombra la aplicación (ej: "AI Agent Test")
    - Copia la contraseña generada de 16 caracteres
    - Usa esta contraseña en la variable EMAIL_PASSWORD
+  
+   ![image](https://github.com/user-attachments/assets/4b82d96a-15c7-4b0e-a250-86f20c3e61d1)
 
 ### Despliegue
 
@@ -157,6 +159,12 @@ docker-compose restart streamlit
 3. Commit tus cambios
 4. Push a la rama
 5. Crea un Pull Request
+
+![image](https://github.com/user-attachments/assets/a96d48d0-a153-489b-95ee-95266d45a005)
+
+![image](https://github.com/user-attachments/assets/7dd65d4c-25b8-468c-a1c4-146fffb6fc1c)
+
+
 
 ## 📄 Licencia
 
