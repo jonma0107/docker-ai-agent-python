@@ -8,4 +8,4 @@ langgraph-supervisor
 langchain
 langchain-community
 langchain-openai
-   
+streamlit   

@@ -1,7 +1,7 @@
 from langchain_core.tools import tool
 from langchain_core.runnables import RunnableConfig
 
-from myemailer.sender import send_mail
+from myemailer.sender import send_mail, EMAIL_ADDRESS
 from myemailer.inbox_reader import read_inbox
 from ai.services import generate_email_message
 
@@ -24,16 +24,17 @@ def research_email(query:str, config: RunnableConfig):
 
 
 @tool
-def send_me_email(subject:str, content:str) -> str:
+def send_me_email(subject:str, content:str, to_email:str = EMAIL_ADDRESS) -> str:
     """
-    Send an email to myself with a subject and content.
+    Send an email to a specific address with a subject and content.
 
     Arguments:
     - subject: str - Text subject of the email
     - content: str - Text body content of the email
+    - to_email: str - Recipient email address
     """
     try:
-        send_mail(subject=subject, content=content)
+        send_mail(subject=subject, content=content, to_email=to_email)
     except:
         return "Not sent"
     return "Sent email"

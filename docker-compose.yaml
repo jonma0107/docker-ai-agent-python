@@ -4,7 +4,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - 8080:8000
+      - 8000:8000
     volumes:
       - ./backend/src:/app
     develop:
@@ -30,6 +30,18 @@ services:
     env_file:
       - .env
 
+  streamlit:
+    build:
+      context: ./backend
+      dockerfile: streamlit.Dockerfile
+    network_mode: host  
+    command: streamlit run src/streamlit.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - 8501:8501
+    volumes:
+      - ./backend/src:/app/src
+    depends_on:
+      - backend
 
   # static_html:
   #   build:

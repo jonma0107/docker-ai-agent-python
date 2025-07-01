@@ -18,7 +18,7 @@ def chat_health():
     return {"status": "ok"}
 
 # /api/chats/recent/
-# curl http://localhost:8080/api/chats/recent/
+# curl http://localhost:8000/api/chats/recent/
 @router.get("/recent/", response_model=List[ChatMessageListItem])
 def chat_list_messages(session: Session = Depends(get_session)):
     query = select(ChatMessage) # sql -> query
@@ -30,7 +30,7 @@ def chat_list_messages(session: Session = Depends(get_session)):
 # curl -X POST -d '{"message": "Hello world"}' -H "Content-Type: application/json" http://localhost:8000/api/chat/
 # curl -X POST -d '{"message": "Hello world"}' -H "Content-Type: application/json" https://docker-ai-agent-python-production-0067.up.railway.app/api/chat/
 
-# curl -X POST -d '{"message": "Give me a summary of why it is good to go outside"}' -H "Content-Type: application/json" http://localhost:8080/api/chats/
+# curl -X POST -d '{"message": "Give me a summary of why it is good to go outside"}' -H "Content-Type: application/json" http://localhost:8000/api/chats/
 
 # curl -X POST -d '{"message": "Give me a summary of why it is good to go outside"}' -H "Content-Type: application/json" https://docker-ai-agent-python-production-0067.up.railway.app/api/chat/
 
